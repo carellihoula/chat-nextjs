@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { FiUser } from "react-icons/fi";
 import IconStandard from "./IconStandard";
@@ -11,6 +11,7 @@ interface InputFieldProps {
   placeholder: string;
   value: string;
   icon: IconType | string;
+  refInput?: React.LegacyRef<HTMLInputElement>;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -18,6 +19,7 @@ const InputField: React.FC<InputFieldProps> = ({
   icon,
   type,
   name,
+  refInput,
   placeholder,
   value,
   onChange,
@@ -32,6 +34,7 @@ const InputField: React.FC<InputFieldProps> = ({
         required
         value={value}
         onChange={onChange}
+        ref={refInput}
       />
     </InputFieldStyled>
   );

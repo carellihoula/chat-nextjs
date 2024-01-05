@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEvent, FC, useEffect, useState } from "react";
+import React, { ChangeEvent, FC, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import InputField from "./InputField";
 import { FiUser } from "react-icons/fi";
@@ -27,7 +27,7 @@ const RegisterForm: FC = () => {
 
   const [passwordConfirm, setPasswordConfirm] = useState<string>("");
   const [errorPassword, setErrorPassword] = useState<string>("");
-
+  const refInput = useRef<HTMLInputElement>(null);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserInfos((infos) => ({
@@ -53,11 +53,11 @@ const RegisterForm: FC = () => {
     setPasswordConfirm("");
   };
 
-  /*useEffect(() => {
-    if (token) {
-      navigate("/login"); // Redirection vers la page principale
+  useEffect(() => {
+    if (refInput.current) {
+      refInput.current.focus();
     }
-  }, [token, navigate, dispatch]); */
+  }, [refInput]);
 
   return (
     <RegisterStyled>
@@ -72,6 +72,7 @@ const RegisterForm: FC = () => {
             value={userInfos.username}
             onChange={handleChange}
             name="username"
+            refInput={refInput}
           />
           <InputField
             type="email"
