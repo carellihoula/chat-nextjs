@@ -10,6 +10,8 @@ import { FaFacebookSquare } from "react-icons/fa";
 import Link from "next/link";
 import ButtonAuth2Component from "./ButtonAuth2Component";
 import SubmitButtonLoginRegister from "./SubmitButtonLoginRegister";
+import { useRouter } from "next/navigation";
+import { signIn, signOut } from "next-auth/react";
 
 type UserInfos = {
   email: string;
@@ -19,6 +21,7 @@ type UserInfos = {
 };
 
 const RegisterForm: FC = () => {
+  const router = useRouter();
   const [userInfos, setUserInfos] = useState<UserInfos>({
     username: "",
     email: "",
@@ -36,11 +39,23 @@ const RegisterForm: FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (userInfos.password !== passwordConfirm) {
       setErrorPassword("Passwords do not match.");
+      return;
+    }
+    const res = await fetch("/api/Users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInfos),
+    });
+    if (!res.ok) {
+      const response = await res.json();
+      setErrorPassword(response.message);
       return;
     }
 
@@ -51,6 +66,7 @@ const RegisterForm: FC = () => {
       password: "",
     });
     setPasswordConfirm("");
+    router.push("/login");
   };
 
   useEffect(() => {
@@ -111,8 +127,16 @@ const RegisterForm: FC = () => {
 
         <h3>Continue with Others</h3>
         <Auth2Button>
-          <ButtonAuth2Component label="Google" icon={FcGoogle} />
-          <ButtonAuth2Component label="Facebook" icon={FaFacebookSquare} />
+          <ButtonAuth2Component
+            label="Google"
+            icon={FcGoogle}
+            handleAuth0={() => signIn("google")}
+          />
+          <ButtonAuth2Component
+            label="Facebook"
+            icon={FaFacebookSquare}
+            handleAuth0={() => signIn("github")}
+          />
         </Auth2Button>
       </div>
     </RegisterStyled>

@@ -3,21 +3,20 @@ import mongoose, { Schema } from "mongoose";
 const userModel = new Schema(
   {
     username: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       required: true,
       unique: true,
       trim: true,
     },
     email: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       required: true,
       unique: true,
       trim: true,
     },
     password: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       required: true,
-      unique: true,
       trim: true,
       select: false,
     },

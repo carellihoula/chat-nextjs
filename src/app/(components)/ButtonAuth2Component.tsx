@@ -2,14 +2,16 @@ import { FC } from "react";
 import styled from "styled-components";
 import IconStandard from "./IconStandard";
 import { IconType } from "react-icons";
+import { signIn } from "next-auth/react";
 
 interface Props {
   icon: IconType | string;
   label: string;
+  handleAuth0: React.MouseEventHandler<HTMLDivElement>;
 }
-const ButtonAuth2Component: FC<Props> = ({ icon, label }) => {
+const ButtonAuth2Component: FC<Props> = ({ icon, label, handleAuth0 }) => {
   return (
-    <ButtonAuthStyled>
+    <ButtonAuthStyled onClick={handleAuth0}>
       <IconStandard Icon={icon} size={24} />
       <div className="common label">
         Login with <span>{label}</span>

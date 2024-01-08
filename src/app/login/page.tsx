@@ -10,6 +10,7 @@ import InputField from "../(components)/InputField";
 import SubmitButtonLoginRegister from "../(components)/SubmitButtonLoginRegister";
 import Link from "next/link";
 import ButtonAuth2Component from "../(components)/ButtonAuth2Component";
+import { signIn } from "next-auth/react";
 
 // Define a type for your state
 type UserInfos = {
@@ -23,9 +24,19 @@ const Login: React.FC = () => {
     password: "",
   });
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    const result = await signIn("credentials", {
+      redirect: false,
+      email: userInfos.email,
+      password: userInfos.password,
+    });
+    if (result && !result.error) {
+      window.location.href = "/ChatSpace";
+    } else {
+      // Gérer les erreurs de connexion, afficher un message d'erreur, etc.
+      result && console.error(result.error);
+    }
     setUserInfos({
       email: "",
       password: "",
@@ -74,8 +85,16 @@ const Login: React.FC = () => {
         </form>
         <h3 className="">Login with Others</h3>
         <div className="flex flex-col gap-2">
-          <ButtonAuth2Component label="Google" icon={FcGoogle} />
-          <ButtonAuth2Component label="Facebook" icon={FaFacebookSquare} />
+          <ButtonAuth2Component
+            label="Google"
+            icon={FcGoogle}
+            handleAuth0={() => signIn("google")}
+          />
+          <ButtonAuth2Component
+            label="Facebook"
+            icon={FaFacebookSquare}
+            handleAuth0={() => signIn("github")}
+          />
         </div>
       </div>
     </div>
