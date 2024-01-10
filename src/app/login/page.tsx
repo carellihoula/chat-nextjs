@@ -94,6 +94,7 @@ const Login: React.FC = () => {
             label="Facebook"
             icon={FaFacebookSquare}
             handleAuth0={() => signIn("github")}
+            color={"blue"}
           />
         </div>
       </div>

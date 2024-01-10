@@ -25,7 +25,7 @@ const InputField: React.FC<InputFieldProps> = ({
   onChange,
 }) => {
   return (
-    <InputFieldStyled>
+    <div className="flex items-center pl-15 rounded-2xl mb-10 w-full h-12 bg-slate-500">
       <IconStandard Icon={icon} size={24} color={"#1C1C1C"} />
       <input
         type={type}
@@ -36,7 +36,7 @@ const InputField: React.FC<InputFieldProps> = ({
         onChange={onChange}
         ref={refInput}
       />
-    </InputFieldStyled>
+    </div>
   );
 };
 

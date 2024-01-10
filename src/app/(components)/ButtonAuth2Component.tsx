@@ -8,43 +8,26 @@ interface Props {
   icon: IconType | string;
   label: string;
   handleAuth0: React.MouseEventHandler<HTMLDivElement>;
+  color?: string;
 }
-const ButtonAuth2Component: FC<Props> = ({ icon, label, handleAuth0 }) => {
+const ButtonAuth2Component: FC<Props> = ({
+  icon,
+  label,
+  handleAuth0,
+  color,
+}) => {
   return (
-    <ButtonAuthStyled onClick={handleAuth0}>
-      <IconStandard Icon={icon} size={24} />
-      <div className="common label">
-        Login with <span>{label}</span>
+    <div
+      onClick={handleAuth0}
+      className="flex items-center justify-center gap-2 cursor-pointer rounded-2xl border
+       border-black border-solid p-5"
+    >
+      <IconStandard Icon={icon} size={24} color={color} />
+      <div className="font-normal text-sm font-mono">
+        Login with <span className="font-bold">{label}</span>
       </div>
-    </ButtonAuthStyled>
+    </div>
   );
 };
 
 export default ButtonAuth2Component;
-
-const ButtonAuthStyled = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 1rem;
-  border: 1px solid #f0edff;
-  width: 364px;
-  height: 52px;
-  flex-shrink: 0;
-  gap: 8px;
-  cursor: pointer;
-
-  .common {
-    color: #1c1c1c;
-    font-family: "Poppins";
-    font-size: 0.8rem;
-    font-style: normal;
-    line-height: normal;
-  }
-  span {
-    font-weight: 700;
-  }
-  label {
-    font-weight: 400;
-  }
-`;

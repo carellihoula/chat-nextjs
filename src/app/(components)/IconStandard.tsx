@@ -5,7 +5,7 @@ import Image from "next/image";
 import { IconType } from "react-icons";
 
 type IconStandardProps = {
-  Icon: IconType | string;
+  Icon: any;
   size?: number;
   color?: string;
   handleClick?: React.MouseEventHandler<HTMLDivElement>;
