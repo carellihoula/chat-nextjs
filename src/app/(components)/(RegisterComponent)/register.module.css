@@ -1,10 +1,35 @@
-.form {
+.form_container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding: 8px;
+  padding: 20px 40px;
+  background: #fff;
+  border-radius: 10px;
+  gap: 8px;
 }
 
+.h3 {
+  color: #1c1c1c;
+  font-family: "Poppins";
+  font-size: 1.2rem;
+  font-style: normal;
+  line-height: normal;
+}
+
+.small {
+  color: #1c1c1c;
+  font-family: "Poppins";
+  font-size: 0.8rem;
+  font-style: normal;
+  line-height: normal;
+  margin-top: 10px;
+  text-align: center;
+}
+.sign__up {
+  color: #0588f0;
+  text-decoration: underline;
+}
 .h1 {
   color: #000;
   font-family: "Poppins";
@@ -14,33 +39,11 @@
   line-height: normal;
   text-transform: uppercase;
 }
-
-.h3 {
-  color: "#1c1c1c";
-  font-family: "Poppins";
-  font-size: 1.2rem;
-  font-style: normal;
-  line-height: normal;
-}
-.small {
-  color: "#1c1c1c";
-  font-family: "Poppins";
-  font-size: 0.8rem;
-  font-style: normal;
-  line-height: normal;
-  margin-top: 10px;
-  text-align: center;
-}
 .welcome {
-  color: "#525252";
+  color: #525252;
   font-family: "Poppins";
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-}
-
-.login {
-  color: #0588f0;
-  text-decoration: underline;
 }

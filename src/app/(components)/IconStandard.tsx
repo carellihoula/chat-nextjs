@@ -17,16 +17,14 @@ const IconStandard: FC<IconStandardProps> = ({
   handleClick,
 }) => {
   return (
-    <IconStandardStyled onClick={handleClick}>
+    <div onClick={handleClick}>
       {typeof Icon === "string" ? (
         <Image src={Icon} alt="imageIcon" width={size} height={size} />
       ) : (
         Icon && <Icon size={size} color={color} />
       )}
-    </IconStandardStyled>
+    </div>
   );
 };
-
-const IconStandardStyled = styled.div``;
 
 export default IconStandard;

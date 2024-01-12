@@ -20,7 +20,7 @@ const ButtonAuth2Component: FC<Props> = ({
     <div
       onClick={handleAuth0}
       className="flex items-center justify-center gap-2 cursor-pointer rounded-2xl border
-       border-black border-solid p-5"
+       border-black border-solid px-20 py-3 hover:bg-slate-200"
     >
       <IconStandard Icon={icon} size={24} color={color} />
       <div className="font-normal text-sm font-mono">

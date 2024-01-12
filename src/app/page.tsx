@@ -1,5 +1,5 @@
 import Image from "next/image";
-import RegisterForm from "./(components)/RegisterForm";
+import RegisterForm from "./(components)/(RegisterComponent)/RegisterForm";
 import { signOut } from "next-auth/react";
 
 export default function Home() {

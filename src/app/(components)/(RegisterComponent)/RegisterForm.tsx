@@ -1,17 +1,17 @@
 "use client";
 import React, { ChangeEvent, FC, useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import InputField from "./InputField";
+import InputField from "../(InputFieldComponent)/InputField";
 import { FiUser } from "react-icons/fi";
 import { HiOutlineLockClosed } from "react-icons/hi";
 import { MdAlternateEmail } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookSquare } from "react-icons/fa";
 import Link from "next/link";
-import ButtonAuth2Component from "./ButtonAuth2Component";
-import SubmitButtonLoginRegister from "./SubmitButtonLoginRegister";
+import ButtonAuth2Component from "../ButtonAuth2Component";
+import SubmitButtonLoginRegister from "../SubmitButtonLoginRegister";
 import { useRouter } from "next/navigation";
 import { signIn, signOut } from "next-auth/react";
+import styles from "./register.module.css";
 
 type UserInfos = {
   email: string;
@@ -76,11 +76,14 @@ const RegisterForm: FC = () => {
   }, [refInput]);
 
   return (
-    <RegisterStyled>
-      <div className="form_container">
-        <h1>REGISTER</h1>
-        <p className="welcome">Welcome to our site CanoChat</p>
-        <form onSubmit={handleSubmit}>
+    <div className="bg-black flex justify-center items-center h-screen">
+      <div className={styles.form_container}>
+        <h1 className={styles.h1}>REGISTER</h1>
+        <p className={styles.welcome}>Welcome to our site CanoChat</p>
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col justify-center p-2"
+        >
           <InputField
             type="text"
             placeholder="Username"
@@ -116,17 +119,19 @@ const RegisterForm: FC = () => {
           />
 
           <SubmitButtonLoginRegister label="Sign Up" />
-          <small style={{ color: "red" }}>{errorPassword}</small>
-          <small>
+          <small style={{ color: "red" }} className={styles.small}>
+            {errorPassword}
+          </small>
+          <small className={styles.small}>
             Already have an account?
             <Link href="/login">
-              <span className="sign__up"> Sign In</span>
+              <span className={styles.sign__up}> Sign In</span>
             </Link>
           </small>
         </form>
 
-        <h3>Continue with Others</h3>
-        <Auth2Button>
+        <h3 className={styles.h3}>Continue with Others</h3>
+        <div className="flex flex-col gap-2.5">
           <ButtonAuth2Component
             label="Google"
             icon={FcGoogle}
@@ -137,79 +142,10 @@ const RegisterForm: FC = () => {
             icon={FaFacebookSquare}
             handleAuth0={() => signIn("github")}
           />
-        </Auth2Button>
+        </div>
       </div>
-    </RegisterStyled>
+    </div>
   );
 };
 
 export default RegisterForm;
-
-const RegisterStyled = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  //background: #8da4ef;
-
-  form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8px;
-  }
-
-  h3 {
-    color: #1c1c1c;
-    font-family: "Poppins";
-    font-size: 1.2rem;
-    font-style: normal;
-    line-height: normal;
-  }
-  .form_container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 40px;
-    background: #fff;
-    border-radius: 15px;
-    gap: 20px;
-  }
-  small {
-    color: #1c1c1c;
-    font-family: "Poppins";
-    font-size: 0.8rem;
-    font-style: normal;
-    line-height: normal;
-    margin-top: 10px;
-    text-align: center;
-  }
-  .sign__up {
-    color: #0588f0;
-    text-decoration: underline;
-  }
-  h1 {
-    color: #000;
-    font-family: "Poppins";
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    text-transform: uppercase;
-  }
-  .welcome {
-    color: #525252;
-    font-family: "Poppins";
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-`;
-
-const Auth2Button = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;

@@ -1,16 +1,18 @@
 "use client";
 import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
-import styled from "styled-components";
 import { FiUser } from "react-icons/fi";
 import { HiOutlineLockClosed } from "react-icons/hi";
 import bg from "../../assets/images/backgroundWhatsapp.jpeg";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookSquare } from "react-icons/fa";
-import InputField from "../(components)/InputField";
+import InputField from "../(components)/(InputFieldComponent)/InputField";
 import SubmitButtonLoginRegister from "../(components)/SubmitButtonLoginRegister";
 import Link from "next/link";
 import ButtonAuth2Component from "../(components)/ButtonAuth2Component";
 import { signIn } from "next-auth/react";
+import styles from "./login.module.css";
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // Define a type for your state
 type UserInfos = {
@@ -23,6 +25,7 @@ const Login: React.FC = () => {
     email: "",
     password: "",
   });
+  const router = useRouter();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,7 +35,7 @@ const Login: React.FC = () => {
       password: userInfos.password,
     });
     if (result && !result.error) {
-      window.location.href = "/ChatSpace";
+      router.push("/ChatSpace");
     } else {
       // Gérer les erreurs de connexion, afficher un message d'erreur, etc.
       result && console.error(result.error);
@@ -53,11 +56,11 @@ const Login: React.FC = () => {
 
   // JSX remains unchanged
   return (
-    <div className=" flex items-center justify-center h-screen">
+    <div className=" flex items-center justify-center h-screen bg-slate-500">
       <div className="flex flex-col items-center bg-white justify-center rounded-lg gap-5 p-10 w-1/3">
-        <h1>LOGIN</h1>
-        <p className="welcome">Welcome to our site CanoChat</p>
-        <form onSubmit={handleSubmit}>
+        <h1 className={styles.h1}>LOGIN</h1>
+        <p className={styles.welcome}>Welcome to our site CanoChat</p>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <InputField
             type="email"
             placeholder="Email"
@@ -76,14 +79,14 @@ const Login: React.FC = () => {
           />
 
           <SubmitButtonLoginRegister label="Login Now" />
-          <small>
+          <small className={styles.small}>
             Don&apos;t have an account?
             <Link href="/">
-              <span className="login"> Sign Up</span>
+              <span className={styles.login}> Sign Up</span>
             </Link>
           </small>
         </form>
-        <h3 className="">Login with Others</h3>
+        <h3 className="h3 ">Login with Others</h3>
         <div className="flex flex-col gap-2">
           <ButtonAuth2Component
             label="Google"
@@ -103,50 +106,3 @@ const Login: React.FC = () => {
 };
 
 export default Login;
-
-const LoginStyled = styled.div`
-  form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8px;
-  }
-  h1 {
-    color: #000;
-    font-family: "Poppins";
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    text-transform: uppercase;
-  }
-  .welcome {
-    color: #525252;
-    font-family: "Poppins";
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-
-  h3 {
-    color: #1c1c1c;
-    font-family: "Poppins";
-    font-size: 1.2rem;
-    font-style: normal;
-    line-height: normal;
-  }
-  small {
-    color: #1c1c1c;
-    font-family: "Poppins";
-    font-size: 0.8rem;
-    font-style: normal;
-    line-height: normal;
-    margin-top: 10px;
-    text-align: center;
-  }
-  .login {
-    color: #0588f0;
-    text-decoration: underline;
-  }
-`;
