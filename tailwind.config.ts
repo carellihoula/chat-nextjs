@@ -12,6 +12,11 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        whatsapp:
+          "url('https://storage.googleapis.com/netflixproject/assets/assets/backgroundWhatsapp.jpeg')",
+      },
+      backgroundColor: {
+        custom__header: "#f0f2f5",
       },
     },
   },

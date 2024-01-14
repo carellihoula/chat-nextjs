@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  align-items: center;
+  gap: 15px;
+}
+.container:hover {
+  background: #f0f2f5;
+  cursor: pointer;
+}
+
+.name_message_author {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+.name {
+  color: var(--Color-3, #6b7c85);
+  font-family: "Work Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.5px;
+}
+.message {
+  color: var(--Color-3, #6b7c85);
+  font-family: Work Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.4px;
+}
+
+.time-and-messages-unread {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  gap: 10px;
+}
+.p {
+  border-radius: 10px;
+  background: var(--Green-1, #25d366);
+  text-align: center;
+  padding: 5px;
+  color: #fff;
+  font-family: "Work Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.small {
+  color: var(--Color-3, #6b7c85);
+  font-family: "Work Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.35px;
+}

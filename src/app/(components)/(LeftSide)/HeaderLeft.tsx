@@ -11,7 +11,7 @@ interface Props {
 
 const HeaderLeft: FC<Props> = ({ ProfileClickHandler }) => {
   return (
-    <div className="flex items-center justify-between bg-gray-200 w-full py-2 px-4 border-r border-gray-300">
+    <div className="flex items-center justify-between bg-[#F0F2F5] w-full py-2 px-4 border-r border-gray-300">
       <AvatarProfilComponent
         imageUrl="https://storage.googleapis.com/netflixproject/assets/assets/profileIcon.png"
         ProfileClickHandler={ProfileClickHandler}

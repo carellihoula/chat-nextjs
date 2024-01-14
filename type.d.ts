@@ -1,21 +1,29 @@
 type Message = {
-  receiver: User;
-  sender: User;
+  receiver: UserType;
+  sender: UserType;
   content: string;
   createdAt: string;
   updatedAt: string;
+  isRead: boolean;
+  id: number;
 };
 
-interface UserType {
-  _id: string;
+type UserType = {
+  id?: number;
   username: string;
   email: string;
-  password: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
+  password?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+};
 
 type Credentials = {
   email: string;
   password: string;
+};
+type Conversation = {
+  conversationId: number;
+  participants: number[];
+  messages: Message[];
+  unreadNumber: number;
 };
