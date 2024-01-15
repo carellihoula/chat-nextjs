@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Largeur du profil, à ajuster selon votre conception */
+  gap: 25px;
+  background: #f0f2f5;
+  position: absolute;
+  z-index: 2;
+}

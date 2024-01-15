@@ -4,6 +4,7 @@ import { IoArrowBack } from "react-icons/io5";
 import EditProfileComponent from "./EditProfileComponent";
 import { FaCamera } from "react-icons/fa";
 import Image from "next/image";
+import styles from "./styles/profile.module.css";
 
 interface PropsStyled {
   isClicked: boolean;
@@ -24,11 +25,11 @@ const ProfileUser: FC<PropsProfile> = ({ isClicked, handleClickBack }) => {
   return (
     <div
       className={`flex flex-col w-full h-[100vh] gap-6 bg-[#f0f2f5] 
-      transition-transform duration-300 ease-in-out transform-[translateX(${
-        isClicked ? "0%" : "-100%"
-      })] absolute z-20`}
+    transition-transform duration-300 ease-in-out transform ${
+      isClicked ? "translate-x-0" : "-translate-x-full"
+    } absolute z-20`}
     >
-      <div className="flex items-end bg-green-600 h-16 p-4 w-full">
+      <div className="flex items-end bg-[#008069] h-32 p-4 w-full">
         <div className="flex items-center gap-4">
           <IconStandard
             Icon={IoArrowBack}
@@ -44,7 +45,7 @@ const ProfileUser: FC<PropsProfile> = ({ isClicked, handleClickBack }) => {
 
       <div className="flex justify-center w-full">
         <div
-          className="relative w-220 h-220 rounded-full cursor-pointer font-work-sans"
+          className="relative w-[220px] h-[220px] rounded-[220px] cursor-pointer font-work-sans"
           onMouseOver={mouseOverHandler}
           onMouseLeave={mouseLeaveHandler}
         >
@@ -53,7 +54,9 @@ const ProfileUser: FC<PropsProfile> = ({ isClicked, handleClickBack }) => {
               "https://storage.googleapis.com/netflixproject/assets/assets/profile__default.jpg"
             }
             alt="profile"
-            className="w-220 h-220 rounded-full hover:brightness-70"
+            className=" rounded-[220px] hover:brightness-[70px]"
+            width={220}
+            height={220}
           />
           {imgHover && (
             <div
@@ -68,7 +71,7 @@ const ProfileUser: FC<PropsProfile> = ({ isClicked, handleClickBack }) => {
 
       <EditProfileComponent label="Your name" value="carel" />
 
-      <div className="px-28 py-5 text-gray-600 font-work-sans">
+      <div className="px-5 py-2 text-gray-600 font-work-sans">
         <p>
           This is not your username or pin. This name will be visible to your
           CanoShop friends

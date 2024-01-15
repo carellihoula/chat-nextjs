@@ -12,7 +12,7 @@ const RightSideOfMain: FC = () => {
   return (
     <div className="flex flex-col h-screen relative w-2/3 bg-whatsapp ">
       <HeaderRight />
-      <div className="flex flex-col px-20 py-40 overflow-y-auto mb-25">
+      <div className="flex flex-col px-5 py-10 overflow-y-auto mb-25">
         {messages1.map((msg, index) => {
           const time = new Date(msg.createdAt).toLocaleTimeString([], {
             hour: "2-digit",

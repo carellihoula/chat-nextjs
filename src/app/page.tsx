@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import RegisterForm from "./(components)/(RegisterComponent)/RegisterForm";
 import { signOut } from "next-auth/react";

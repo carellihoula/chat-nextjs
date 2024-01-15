@@ -1,6 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import reducerShowProfile from "./showProfile/reducer";
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  showProfileReducer: reducerShowProfile,
+});
 
 export const store = configureStore({
   reducer: rootReducer,

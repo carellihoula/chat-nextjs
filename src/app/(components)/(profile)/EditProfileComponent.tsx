@@ -11,7 +11,7 @@ interface EditProps {
 
 const EditProfileComponent: React.FC<EditProps> = ({ label, value }) => {
   return (
-    <div className={styles.conatiner}>
+    <div className={styles.container}>
       <p className={styles.name}>{label}</p>
       <div className={styles.profile__content}>
         <p className={styles.value}>{value}</p>
