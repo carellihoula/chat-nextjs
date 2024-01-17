@@ -6,7 +6,7 @@ import styles from "./profile.module.css";
 
 interface EditProps {
   label: string;
-  value?: string;
+  value: string;
 }
 
 const EditProfileComponent: React.FC<EditProps> = ({ label, value }) => {

@@ -1,3 +1,4 @@
+"use client";
 import React, { FC, useEffect, useState } from "react";
 import IconStandard from "../IconStandard";
 import { IoArrowBack } from "react-icons/io5";
@@ -5,6 +6,9 @@ import EditProfileComponent from "./EditProfileComponent";
 import { FaCamera } from "react-icons/fa";
 import Image from "next/image";
 import styles from "./styles/profile.module.css";
+import { signOut, useSession } from "next-auth/react";
+import { CiLogout } from "react-icons/ci";
+import { redirect } from "next/navigation";
 
 interface PropsStyled {
   isClicked: boolean;
@@ -15,6 +19,14 @@ interface PropsProfile {
 }
 
 const ProfileUser: FC<PropsProfile> = ({ isClicked, handleClickBack }) => {
+  //const { data: session, status } = useSession();
+  const { data: session, status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      redirect("/login");
+    },
+  });
+  console.log(session?.user);
   const [imgHover, setImgHover] = useState<boolean>(false);
   const mouseOverHandler = () => {
     setImgHover(true);
@@ -22,9 +34,12 @@ const ProfileUser: FC<PropsProfile> = ({ isClicked, handleClickBack }) => {
   const mouseLeaveHandler = () => {
     setImgHover(false);
   };
+  const signOutHandler = () => {
+    signOut();
+  };
   return (
     <div
-      className={`flex flex-col w-full h-[100vh] gap-6 bg-[#f0f2f5] 
+      className={`flex flex-col w-full h-[100vh] gap-4 bg-[#f0f2f5] 
     transition-transform duration-300 ease-in-out transform ${
       isClicked ? "translate-x-0" : "-translate-x-full"
     } absolute z-20`}
@@ -69,7 +84,20 @@ const ProfileUser: FC<PropsProfile> = ({ isClicked, handleClickBack }) => {
         </div>
       </div>
 
-      <EditProfileComponent label="Your name" value="carel" />
+      <div className="flex items-center justify-center">
+        <div
+          className="flex w-[30%] justify-center p-4 items-center select-none
+         hover:bg-white hover:rounded-xl hover:cursor-pointer"
+          onClick={signOutHandler}
+        >
+          <IconStandard Icon={CiLogout} size={30} color={"red"} /> Logged Out
+        </div>
+      </div>
+
+      <EditProfileComponent
+        label="Your name"
+        value={session?.user?.email ?? ""}
+      />
 
       <div className="px-5 py-2 text-gray-600 font-work-sans">
         <p>

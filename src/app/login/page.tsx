@@ -27,6 +27,14 @@ const Login: React.FC = () => {
   });
   const router = useRouter();
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserInfos((infos) => ({
+      ...infos,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const result = await signIn("credentials", {
@@ -44,14 +52,6 @@ const Login: React.FC = () => {
       email: "",
       password: "",
     });
-  };
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setUserInfos((infos) => ({
-      ...infos,
-      [name]: value,
-    }));
   };
 
   // JSX remains unchanged

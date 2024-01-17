@@ -79,6 +79,7 @@ export const options = {
             throw new Error("Wrong password");
           }
           delete foundUser?.password;
+          console.log(foundUser);
           return foundUser;
         } catch (err) {
           console.log(err);
